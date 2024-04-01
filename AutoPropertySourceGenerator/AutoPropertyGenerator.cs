@@ -46,9 +46,6 @@ public class AutoPropertyGenerator : IIncrementalGenerator
         {
             return default;
         }
-
-        bool withAutoPropertyAttribute = false;
-
         // Field attribute filter
         var namespaceDeclaration = AutoPropertySourceGenerationHelper.GetNamespace(classDeclarationSyntax);
         var className = classDeclarationSyntax.Identifier.Text;
