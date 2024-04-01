@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<errors>
+	<lang>zh-Hans</lang>
+	<codeBase>0xE0101</codeBase>
+	<error code="01" name="Error_1"><![CDATA[错误1 '{0}']]></error>
+	<error code="02" name="Error_2"><![CDATA[错误2]]></error>
+	<error code="03" name="Error_3"><![CDATA[错误3]]></error>
+</errors>

@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorCodeSourceGenerator", "ErrorCodeSourceGenerator\ErrorCodeSourceGenerator.csproj", "{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ErrorCodeSourceGeneratorTest", "ErrorCodeSourceGeneratorTest\ErrorCodeSourceGeneratorTest.csproj", "{F6BE6B0C-B604-4590-9B67-51F7F667CB36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPropertySourceGenerator", "AutoPropertySourceGenerator\AutoPropertySourceGenerator.csproj", "{A86E7A91-AF77-42D1-8ED8-B1D5728606E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoPropertySourceGeneratorTest", "AutoPropertySourceGeneratorTest\AutoPropertySourceGeneratorTest.csproj", "{8FBF63AF-D16A-4318-A6DD-A059A244380D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.AutoPropertySourceGeneratorDemo", "1.AutoPropertySourceGeneratorDemo", "{3B2B0808-6F3C-49DA-AD05-67DFA3810922}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.ErrorCodeSourceGeneratorDemo", "2.ErrorCodeSourceGeneratorDemo", "{D3B0CD97-A448-409B-A447-CFE930282E8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BE6B0C-B604-4590-9B67-51F7F667CB36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BE6B0C-B604-4590-9B67-51F7F667CB36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BE6B0C-B604-4590-9B67-51F7F667CB36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BE6B0C-B604-4590-9B67-51F7F667CB36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A86E7A91-AF77-42D1-8ED8-B1D5728606E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A86E7A91-AF77-42D1-8ED8-B1D5728606E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A86E7A91-AF77-42D1-8ED8-B1D5728606E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A86E7A91-AF77-42D1-8ED8-B1D5728606E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBF63AF-D16A-4318-A6DD-A059A244380D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBF63AF-D16A-4318-A6DD-A059A244380D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBF63AF-D16A-4318-A6DD-A059A244380D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBF63AF-D16A-4318-A6DD-A059A244380D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{652B5B74-73F2-4BCA-AAFA-DA2B9B7CD9C0} = {D3B0CD97-A448-409B-A447-CFE930282E8C}
+		{F6BE6B0C-B604-4590-9B67-51F7F667CB36} = {D3B0CD97-A448-409B-A447-CFE930282E8C}
+		{A86E7A91-AF77-42D1-8ED8-B1D5728606E2} = {3B2B0808-6F3C-49DA-AD05-67DFA3810922}
+		{8FBF63AF-D16A-4318-A6DD-A059A244380D} = {3B2B0808-6F3C-49DA-AD05-67DFA3810922}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F83C9CC5-A392-4941-864C-52009B29FC6A}
+	EndGlobalSection
+EndGlobal
