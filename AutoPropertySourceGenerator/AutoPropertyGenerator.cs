@@ -18,9 +18,9 @@ public class AutoPropertyGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         //是否启用调试功能
-//#if DEBUG
-//        Debugger.Launch();
-//#endif
+        //#if DEBUG
+        //        Debugger.Launch();
+        //#endif
 
         context.RegisterPostInitializationOutput(static ctx => ctx.AddSource(
            "AutoPropertyAttribute.g.cs", SourceText.From(AutoPropertySourceGenerationHelper.AutoPropertyAttribute, Encoding.UTF8)));
@@ -168,9 +168,9 @@ public class AutoPropertyGenerator : IIncrementalGenerator
 
     private static string Generate(string nameSpace, string className, List<GeneratorProperty> properties)
     {
-        var buffer = new StringBuilder(512);
-        buffer.AppendLine($"namespace {nameSpace};");
-        buffer.AppendLine($"public partial class {className}{{");
+        var sb = new StringBuilder(512);
+        sb.AppendLine($"namespace {nameSpace};");
+        sb.AppendLine($"public partial class {className}{{");
         foreach (var property in properties)
         {
             var propertyName = property.Name;
@@ -180,11 +180,11 @@ public class AutoPropertyGenerator : IIncrementalGenerator
             }
             if (!string.IsNullOrWhiteSpace(property.Summary))
             {
-                buffer.AppendLine("/// <summary>");
-                buffer.AppendLine($"/// {property.Summary}");
-                buffer.AppendLine("/// </summary>");
+                sb.AppendLine("/// <summary>");
+                sb.AppendLine($"/// {property.Summary}");
+                sb.AppendLine("/// </summary>");
             }
-            buffer.AppendLine(@$"public {property.FieldType} {propertyName}
+            sb.AppendLine(@$"public {property.FieldType} {propertyName}
     {{
         get => {property.FieldName};
         protected set
@@ -199,13 +199,13 @@ public class AutoPropertyGenerator : IIncrementalGenerator
         }}
     }}");
         }
-        buffer.AppendLine($"}}");
-        return buffer.ToString();
+        sb.AppendLine($"}}");
+        return sb.ToString();
     }
 
     private static string GetFilename(string nameSpace, string className)
     {
-        var fileName = nameSpace.Replace('.', '_') + className.Replace('.', '_') + ".g.cs";
+        var fileName = $"{nameSpace.Replace('.', '_')}_{className.Replace('.', '_')}.g.cs";
         return fileName;
     }
 }
