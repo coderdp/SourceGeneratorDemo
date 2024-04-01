@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Text;
 
@@ -17,9 +18,9 @@ public class AutoPropertyGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         //是否启用调试功能
-        //#if DEBUG
-        //        Debugger.Launch();
-        //#endif
+//#if DEBUG
+//        Debugger.Launch();
+//#endif
 
         context.RegisterPostInitializationOutput(static ctx => ctx.AddSource(
            "AutoPropertyAttribute.g.cs", SourceText.From(AutoPropertySourceGenerationHelper.AutoPropertyAttribute, Encoding.UTF8)));
@@ -42,7 +43,8 @@ public class AutoPropertyGenerator : IIncrementalGenerator
         var classDeclarationSyntax = (ClassDeclarationSyntax)context.Node;
 
         bool withAutoPropertyAttribute = false;
-        // loop through all the attributes on the method
+
+        // Class attribute filter
         foreach (AttributeListSyntax attributeListSyntax in classDeclarationSyntax.AttributeLists)
         {
             if (withAutoPropertyAttribute)
@@ -64,6 +66,12 @@ public class AutoPropertyGenerator : IIncrementalGenerator
                     continue;
                 }
 
+                bool isPartialClass = classDeclarationSyntax.Modifiers.Any(modifier => modifier.IsKind(SyntaxKind.PartialKeyword));
+                if (!isPartialClass)
+                {
+                    continue;
+                }
+
                 INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
                 string fullName = attributeContainingTypeSymbol.ToDisplayString();
 
@@ -81,6 +89,7 @@ public class AutoPropertyGenerator : IIncrementalGenerator
             return default;
         }
 
+        // Field attribute filter
         var namespaceDeclaration = AutoPropertySourceGenerationHelper.GetNamespace(classDeclarationSyntax);
         var className = classDeclarationSyntax.Identifier.Text;
         var generatorContext = new GeneratorContext()
