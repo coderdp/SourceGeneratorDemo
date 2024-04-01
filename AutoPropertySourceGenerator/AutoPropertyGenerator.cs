@@ -18,10 +18,9 @@ public class AutoPropertyGenerator : IIncrementalGenerator
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
         //是否启用调试功能
-        //#if DEBUG
-        //        Debugger.Launch();
-        //#endif
-
+//#if DEBUG
+//        Debugger.Launch();
+//#endif
         context.RegisterPostInitializationOutput(static ctx => ctx.AddSource(
            "AutoPropertyAttribute.g.cs", SourceText.From(AutoPropertySourceGenerationHelper.AutoPropertyAttribute, Encoding.UTF8)));
 
@@ -36,58 +35,19 @@ public class AutoPropertyGenerator : IIncrementalGenerator
     }
 
     private static bool IsSyntaxTargetForGeneration(SyntaxNode node) =>
-        node is ClassDeclarationSyntax classSyntax && classSyntax.AttributeLists.Count > 0;
+        node is ClassDeclarationSyntax;
 
     private static GeneratorContext GetSemanticTargetForGeneration(GeneratorSyntaxContext context)
     {
         var classDeclarationSyntax = (ClassDeclarationSyntax)context.Node;
 
-        bool withAutoPropertyAttribute = false;
-
-        // Class attribute filter
-        foreach (AttributeListSyntax attributeListSyntax in classDeclarationSyntax.AttributeLists)
-        {
-            if (withAutoPropertyAttribute)
-            {
-                break;
-            }
-
-            foreach (AttributeSyntax attributeSyntax in attributeListSyntax.Attributes)
-            {
-                if (withAutoPropertyAttribute)
-                {
-                    break;
-                }
-
-                IMethodSymbol attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeSyntax).Symbol as IMethodSymbol;
-                if (attributeSymbol == null)
-                {
-                    // weird, we couldn't get the symbol, ignore it
-                    continue;
-                }
-
-                bool isPartialClass = classDeclarationSyntax.Modifiers.Any(modifier => modifier.IsKind(SyntaxKind.PartialKeyword));
-                if (!isPartialClass)
-                {
-                    continue;
-                }
-
-                INamedTypeSymbol attributeContainingTypeSymbol = attributeSymbol.ContainingType;
-                string fullName = attributeContainingTypeSymbol.ToDisplayString();
-
-                var attributeName = attributeSyntax.Name.ToString();
-                if (attributeName == "AutoProperty")
-                {
-                    withAutoPropertyAttribute = true;
-                    break;
-                }
-            }
-        }
-
-        if (!withAutoPropertyAttribute)
+        bool isPartialClass = classDeclarationSyntax.Modifiers.Any(modifier => modifier.IsKind(SyntaxKind.PartialKeyword));
+        if (!isPartialClass)
         {
             return default;
         }
+
+        bool withAutoPropertyAttribute = false;
 
         // Field attribute filter
         var namespaceDeclaration = AutoPropertySourceGenerationHelper.GetNamespace(classDeclarationSyntax);

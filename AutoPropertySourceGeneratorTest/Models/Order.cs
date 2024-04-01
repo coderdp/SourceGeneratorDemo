@@ -2,7 +2,6 @@
 
 using AutoPropertySourceGenerator;
 
-[AutoProperty]
 public partial class Order : BaseEntity
 {
     public string Id { get; protected set; }
